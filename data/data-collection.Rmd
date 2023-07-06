@@ -1,0 +1,26 @@
+---
+title: "data-collection"
+author: "Toby Chiu"
+date: "2023-07-06"
+output: html_document
+---
+
+Data is retrieved using package from [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
+Underlying data is from FBref and transfrmarket
+
+## Basic Setup
+```{r installing packages}
+# install.packages("worldfootballR")
+library(worldfootballR)
+```
+## Obtaining Player Databases
+```{r}
+# Database of all players
+mapped_players = player_dictionary_mapping()
+
+# stats for each player in 2022-23 EPL 
+big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= 2023, stat_type= "shooting", team_or_player= "player")
+
+# transfer valuations for all players in top 5 leagues over last 5 seasons
+player_valuations <- tm_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"), start_year = c(2019:2023))
+```
