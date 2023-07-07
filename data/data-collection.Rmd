@@ -6,21 +6,94 @@ output: html_document
 ---
 
 Data is retrieved using package from [here](https://jaseziv.github.io/worldfootballR/articles/extract-fbref-data.html)
-Underlying data is from FBref and transfrmarket
+Underlying data is from FBref and transfermarkt (TM).
 
 ## Basic Setup
+
 ```{r installing packages}
 # install.packages("worldfootballR")
 library(worldfootballR)
+library(tidyverse)
+library(stringi)
 ```
 ## Obtaining Player Databases
+
+Getting a list of all players
+
 ```{r}
 # Database of all players
 mapped_players = player_dictionary_mapping()
+```
 
-# stats for each player in 2022-23 EPL 
-big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= 2023, stat_type= "shooting", team_or_player= "player")
+Getting stats for each player in 2022-23 EPL
 
-# transfer valuations for all players in top 5 leagues over last 5 seasons
+```{r}
+big5_player_standard <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "standard", team_or_player= "player")
+big5_player_shooting <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "shooting", team_or_player= "player")
+big5_player_passing <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "passing", team_or_player= "player")
+big5_player_passing_types <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "passing_types", team_or_player= "player")
+big5_player_gca <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "gca", team_or_player= "player")
+big5_player_defense <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "defense", team_or_player= "player")
+big5_player_possession <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "possession", team_or_player= "player")
+big5_player_playing_time <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "playing_time", team_or_player= "player")
+big5_player_misc <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "misc", team_or_player= "player")
+big5_player_keepers <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "keepers", team_or_player= "player")
+big5_player_keepers_adv <- fb_big5_advanced_season_stats(season_end_year= c(2019:2023), stat_type= "keepers_adv", team_or_player= "player")
+```
+
+Getting transfer valuations for all players in top 5 leagues over last 5 seasons
+
+```{r}
 player_valuations <- tm_player_market_values(country_name = c("England", "Spain", "France", "Italy", "Germany"), start_year = c(2019:2023))
 ```
+
+## Data Cleaning
+
+Creating a common field between FBref and transfermarkt datasets by combining the name and year to create a unique ID for each entry.
+
+```{r}
+# FBref datasets
+big5_player_standard <- big5_player_standard %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_shooting <- big5_player_shooting %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_passing <- big5_player_passing %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_passing_types <- big5_player_passing_types %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_gca <- big5_player_gca %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_defense <- big5_player_defense %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_possession <- big5_player_possession %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_playing_time <- big5_player_playing_time %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_misc <- big5_player_misc %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_keepers <- big5_player_keepers %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+big5_player_keepers_adv <- big5_player_keepers_adv %>% 
+  unite("unique_ID", c("Player", "Season_End_Year"), sep="_", remove=FALSE)
+
+# TM dataset
+player_valuations <- player_valuations %>% 
+  unite("unique_ID", c("player_name", "season_start_year"), sep="_", remove=FALSE)
+```
+
+We can also seperate the transfermarkt datasets into two datasets, one for outfield players and one for goalkeepers, given their widely differing skillsets and valuation techniques.
+
+```{r}
+# Splitting our TM dataset into outfielders and goalkeepers.
+outfield_player_valuations <- player_valuations %>% 
+  filter(player_position != "Goalkeeper")
+
+keeper_player_valuations <- player_valuations %>% 
+  filter(player_position == "Goalkeeper")
+```
+
+## Exporting Raw Datasets
+
+We will finish the data cleaning in Pandas.
+
+
