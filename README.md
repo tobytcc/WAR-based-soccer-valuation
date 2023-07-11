@@ -6,9 +6,9 @@ A wins-above-replacement (WAR) approach is central to judging player skill and v
 
 The [MLB](https://www.mlb.com/glossary/advanced-stats/wins-above-replacement) pioneered the use of WAR to evaluate players, given the position-reliant nature that required metrics to compare players within the same position.
 
-The [NBA] uses a more fluid and advanced version of WAR, looking to standardise statistics across roles. NBA's [VORP](https://www.basketball-reference.com/leaders/vorp_career.html) metric, Nate Silver's [RAPTOR](https://fivethirtyeight.com/features/how-our-raptor-metric-works/) metric, or John Holliger's [PER](https://www.basketball-reference.com/about/per.html) metric all attempt different methods at valuing the average difference in value for players.
+The NBA uses a more fluid and advanced version of WAR, looking to standardise statistics across roles. NBA's [VORP](https://www.basketball-reference.com/leaders/vorp_career.html) metric, Nate Silver's [RAPTOR](https://fivethirtyeight.com/features/how-our-raptor-metric-works/) metric, or John Holliger's [PER](https://www.basketball-reference.com/about/per.html) metric all attempt different methods at valuing the average difference in value for players.
 
-We will take a less statistical approach, **relying on machine learning to determine the overall value of differences in all statistics to a statistical average**. We will be comparing players to a theoretical average in their position and in the same league. We can then use this model-estimated statistic to estimate a theoretical valuation for every player based on their underlying statistics over their past 5 seasons. 
+We will take a non-rigid approach, **relying on machine learning techniques to determine the overall value of differences in all statistics to a statistical average**. We will be comparing players to a theoretical average in their position and in the same league. We can then use this model-estimated statistic to estimate a theoretical valuation for every player based on their underlying statistics over their past 5 seasons. 
 
 ## Approach
 
@@ -16,9 +16,15 @@ Raw datasets have been taken from JaseSiv's [WorldFootballR](https://jaseziv.git
 
 Data cleaning was done through R, Python, and Excel. In particular, a player's valuations were estimated through taking their valuation from their past club, or from the previous year.
 
+Our model can then be applied in two main steps:
+    1. Calculating a generic WAR by averaging relevant statistics and using Principal Component Analysis (PCA) to generate a singular WAR statistic primarily based on variance to the theoretically "average" player.
+    2. Regressing valuations seperately based on a player's position and league to calculate an objective "underlying" valuation.
+
 ## Limitations
 
-- Deep learning or neural network approaches can allow our model to determine better relationships between different statistics, and provide a more accurate valuation as a result. This can be attempted in the future.
+- Better/more accurate approaches towards dimensionality reduction (particularly reducing data loss) can allow our model to determine better relationships between different statistics, and provide a more accurate valuation as a result. This can be attempted in the future.
+
+- This approach discounts the "team factor" in calculations. For instance, players generally have better offensive stats on winning teams, in an offensively-geared formation, or if given more license to roam forward. Our approach treats all players in an average team - much like WAR in other sports.
 
 ## Further Developments
 
