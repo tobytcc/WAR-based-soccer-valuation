@@ -17,6 +17,7 @@ Raw datasets have been taken from JaseSiv's [WorldFootballR](https://jaseziv.git
 Data cleaning was done through R, Python, and Excel. In particular, a player's valuations and position were estimated through taking their valuation from their past club, or from the previous year.
 
 Our model can then be applied in two main steps:
+
     1. Calculating a generic "VORP" (Value Over Replacement Player - similar to NBA approach) by averaging relevant statistics and using Principal Component Analysis (PCA) to generate a singular WAR statistic primarily based on variance to the theoretically "average" player.
     2. Regressing valuations seperately based on a player's position and league to calculate an objective "underlying" valuation.
 
