@@ -27,6 +27,11 @@ Our model can then be applied in two main steps:
 
 - This approach discounts the "team factor" in calculations. For instance, players generally have better offensive stats on winning teams, in an offensively-geared formation, or if given more license to roam forward. Our approach treats all players in an average team - much like WAR in other sports.
 
+- Stats can be better optimised:
+    - Statistics weighted have a slight preference towards offensive strengths - this is an inherent issue with modern stats counting, as defensive statistics are not as prioritised in datasets. **To remedy this, I've overprioritised (overweighted) defensive stats on a few occasions.**
+    - Per90/percentage stats can be created from counting stats through further preprocessing.
+    - A statistical approach to finding weights and reducing covariances can help fine-tune weights and relationships between variables, uncovering the "true" importance of each statistics - this would require lots of time.
+
 ## Further Developments
 
 - I am planning to further research in this area by implementing future webscraping/API data to analyse future transfers, evaluating transfers in future transfer windows, or answering specific research questions, such as:
