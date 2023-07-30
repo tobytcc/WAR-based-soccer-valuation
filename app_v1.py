@@ -2,6 +2,7 @@ import os
 from dash import Dash, html, dash_table, dcc, callback, Output, Input
 import pandas as pd
 import plotly.express as px
+from unidecode import unidecode 
 
 # Change to your local folder before editing
 os.chdir("C:/Users/tobyt/Desktop/Coding/Personal/wins-above-replacement-soccer/WAR-based-soccer-valuation")
@@ -25,7 +26,7 @@ app = Dash(__name__)
 
 # App layout
 app.layout = html.Div([
-    html.H1(children="Implementing a WAR (Wins Above Replacement) metric for soccer"),
+    html.H1(children="Implementing a WAR (Wins Above Replacement) Metric Into Major Soccer Leagues"),
     dcc.Dropdown(options=positions, value="Centre-Forward", id="positions-dropdown", clearable=False),
     dcc.Dropdown(options=leagues, value="🌎 Overall", id="league-dropdown", clearable=False),
     dcc.Graph(figure={}, id="graph")
