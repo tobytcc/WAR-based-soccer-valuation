@@ -4,6 +4,8 @@ import pandas as pd
 import plotly.express as px
 from unidecode import unidecode 
 
+# LEGACY - CAN IGNORE (keeping code for reference, will remove in later iterations)
+
 # Change to your local folder before editing
 os.chdir("C:/Users/tobyt/Desktop/Coding/Personal/wins-above-replacement-soccer/WAR-based-soccer-valuation")
 
