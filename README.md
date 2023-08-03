@@ -31,7 +31,9 @@ Our model can then be applied in two main steps:
 
 ## Known Issues
 
-*To be added*
+- When running the Dash app, the first runthrough will fail to render (throw errors in processing graph). Refreshing always fixes this issue.
+
+- The website cannot handle missing data (of which I have tried to reduce as much as possible), given a lack of exceptions or redundencies. 
 
 ## Limitations
 
