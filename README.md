@@ -10,6 +10,10 @@ The NBA uses a more fluid and advanced version of WAR, looking to standardise st
 
 We will take a non-rigid approach, **relying on machine learning techniques to determine the overall value of differences in all statistics to a statistical average**. We will be comparing players to a theoretical average in their position and in the same league. We can then use this model-estimated statistic to estimate a theoretical valuation for every player based on their underlying statistics over their past 5 seasons. 
 
+## Reflection
+
+*Learning Experience - to be added*
+
 ## Approach
 
 Raw datasets have been taken from JaseSiv's [WorldFootballR](https://jaseziv.github.io/worldfootballR/) database, and underlying data is taken from [FBref](https://fbref.com/en/) and [Transfermarkt](https://www.transfermarkt.com/).
@@ -20,6 +24,14 @@ Our model can then be applied in two main steps:
 
     1. Calculating a generic "VORP" (Value Over Replacement Player - similar to NBA approach) by averaging relevant statistics and using Principal Component Analysis (PCA) to generate a singular WAR statistic primarily based on variance to the theoretically "average" player.
     2. Regressing valuations seperately based on a player's position and league to calculate an objective "underlying" valuation.
+
+## Operating Instructions
+
+*To be added*
+
+## Known Issues
+
+*To be added*
 
 ## Limitations
 
