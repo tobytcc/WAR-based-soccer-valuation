@@ -13,9 +13,7 @@ war_overall - overall calculated WAR score
 war_league - league-only calculated WAR score
 percentile_overall - overall position-based percentile of WAR score
 percentile_league - league-only position-based percentile of WAR score
-self.actual_value - current transfermarkt valuation (or formulated valuation if not present)
-self.projected_value_overall - projected value based on overall WAR score 
-self.projected_value_league- projected value based on league-only WAR score 
+actual_value - current transfermarkt valuation (or formulated valuation if not present)
 '''
 
 class Player:
