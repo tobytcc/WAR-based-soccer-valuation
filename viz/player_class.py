@@ -25,14 +25,6 @@ class Player:
         self.year = year
         self.club = club
         self.initialise_war()
-        '''
-        self.war_league = None
-        self.percentile_overall = None
-        self.percentile_league = None
-        self.actual_value = None
-        self.projected_value_overall = None
-        self.projected_value_league = None
-        '''
     
     def initialise_war(self):
         self.unique_ID = "_".join([self.name, str(self.year), self.club])
@@ -48,7 +40,3 @@ class Player:
         self.percentile_league = league_player_df["percentile"].iloc[0]
         self.actual_value = overall_player_df["player_market_value_euro"].iloc[0]
     
-        '''
-        self.projected_value_overall = 
-        self.projected_value_league = 
-        '''
