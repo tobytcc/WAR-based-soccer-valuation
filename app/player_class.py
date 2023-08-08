@@ -1,5 +1,8 @@
 import pandas as pd
+import os
 
+# Change to your own directory before running
+os.chdir("C:/Users/tobyt/Desktop/Coding/Personal/wins-above-replacement-soccer/WAR-based-soccer-valuation")
 
 search_df = pd.read_csv("./output/database/search-data.csv")
 
