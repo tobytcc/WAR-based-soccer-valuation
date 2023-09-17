@@ -264,4 +264,4 @@ def update_league_graph(name, year, club):
 
 # Run the app
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

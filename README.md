@@ -8,11 +8,7 @@ The [MLB](https://www.mlb.com/glossary/advanced-stats/wins-above-replacement) pi
 
 The NBA uses a more fluid and advanced version of WAR, looking to standardise statistics across roles. NBA's [VORP](https://www.basketball-reference.com/leaders/vorp_career.html) metric, Nate Silver's [RAPTOR](https://fivethirtyeight.com/features/how-our-raptor-metric-works/) metric, or John Holliger's [PER](https://www.basketball-reference.com/about/per.html) metric all attempt different methods at valuing the average difference in value for players.
 
-We will take a non-rigid approach, **relying on machine learning techniques to determine the overall value of differences in all statistics to a statistical average**. We will be comparing players to a theoretical average in their position and in the same league. We can then use this model-estimated statistic to estimate a theoretical valuation for every player based on their underlying statistics over their past 5 seasons. 
-
-## Reflection
-
-*Learning Experience - to be added*
+We will take a non-rigid approach, **relying on dimensionality reduction techniques to determine the overall value of differences in all statistics to a statistical average**. We will be comparing players to a theoretical average in their position and in the same league. We can then use this model-estimated statistic to estimate a theoretical valuation for every player based on their underlying statistics over their past 5 seasons. 
 
 ## Approach
 
@@ -22,12 +18,37 @@ Data cleaning was done through R, Python, and Excel. In particular, a player's v
 
 Our model can then be applied in two main steps:
 
-    1. Calculating a generic "VORP" (Value Over Replacement Player - similar to NBA approach) by averaging relevant statistics and using Principal Component Analysis (PCA) to generate a singular WAR statistic primarily based on variance to the theoretically "average" player.
-    2. Regressing valuations seperately based on a player's position and league to calculate an objective "underlying" valuation.
+    1. Calculating a generic "VORP" (Value Over Replacement Player - similar to NBA approach) by averaging relevant statistics and using Principal Component Analysis (PCA) to generate a singular WAR statistic primarily based on variance to the theoretically "average" player. 
+    
+    Our PCA analysis has two goals: to maximise variance across per90/% statistics (prioritising capture of variance across players to find "value above average"), and minimising information loss when reducing dimensions. 
+
+    2. Regressing valuations seperately based on a player's position and league to calculate an objective "underlying" valuation. Each player will have a calculated valuation, and a market value from Transfermarkt.
 
 ## Operating Instructions
 
-*To be added*
+**UPDATE (17/09/2023):** Website is no longer up. Program can be run by running app.py and hosting the website on your own device.
+
+This is what the app should look like (ignore the terrible UI - will improve if given time):
+![app-photo](/img/app-photo.png)
+
+The app features several basic interactive elements, such as dropdown menus to choose your player (on both sides), and interactive graphs.
+![interactive-photo](/img/app-interactive.png)
+
+## Reflection
+
+I used this project as an introduction to sports analytics, an area I have major interest in. This project gave me huge insight into how data-driven the industry has shifted towards, and how statistics weigh into market value (as all clubs use statistical models to value players). I would like to explore sports analytics and valuation extensively in the future.
+
+In terms of project learning, I can split it into four steps: 
+
+    1. Data collection was fun - I think data engineering could be an area I could explore more.
+
+    2. Data processing for machine learning took a lot of time, but it taught me a lot about working with Pandas, NumPy, and SciPy. Data processing is an area of improvement for me.
+
+    3. PCA Analysis was really fun! Even if the program was based on previous libraries, I learnt a lot about statistical methods and optimization, as well as vector calculations through my research and prep in understanding this method.
+
+    4. Designing the Dash app was very time-consuming, and I discovered that I don't enjoy front-end design (although it is a very useful skill). I want to work with more frameworks in future to find simpler, more efficient front-end designs for my projects.
+
+I learnt a lot about other crucial elements for data science. I enacted best practices in version control, documentation, and data management throughout the project. I also ensured I was coding regularly, and purposely struggling through difficult aspects to gain a better experience - this was probably why I learnt so much!
 
 ## Known Issues
 
@@ -53,7 +74,7 @@ Our model can then be applied in two main steps:
     - How does player valuation progression work for younger players in different leagues?
     - What are the other major factors that affect valuation besides underlying stats - e.g. team situation, playstyle fit, off-field situation, etc.
 
-- Player Projections can be done by expanding research to look at specific players throughout their careers
+- Player Projections can be done by expanding research to look at specific players throughout their careers, and by comparing them to similar players (regardless of position or league).
 
 - How effective is this method of valuation compared to other methods?
 
