@@ -18,11 +18,11 @@ Data cleaning was done through R, Python, and Excel. In particular, a player's v
 
 Our model can then be applied in two main steps:
 
-    1. Calculating a generic "VORP" (Value Over Replacement Player - similar to NBA approach) by averaging relevant statistics and using Principal Component Analysis (PCA) to generate a singular WAR statistic primarily based on variance to the theoretically "average" player. 
-    
-    Our PCA analysis has two goals: to maximise variance across per90/% statistics (prioritising capture of variance across players to find "value above average"), and minimising information loss when reducing dimensions. 
+1. Calculating a generic "VORP" (Value Over Replacement Player - similar to NBA approach) by averaging relevant statistics and using Principal Component Analysis (PCA) to generate a singular WAR statistic primarily based on variance to the theoretically "average" player. 
 
-    2. Regressing valuations seperately based on a player's position and league to calculate an objective "underlying" valuation. Each player will have a calculated valuation, and a market value from Transfermarkt.
+Our PCA analysis has two goals: to maximise variance across per90/% statistics (prioritising capture of variance across players to find "value above average"), and minimising information loss when reducing dimensions. 
+
+2. Regressing valuations seperately based on a player's position and league to calculate an objective "underlying" valuation. Each player will have a calculated valuation, and a market value from Transfermarkt.
 
 ## Operating Instructions
 
@@ -40,13 +40,13 @@ I used this project as an introduction to sports analytics, an area I have major
 
 In terms of project learning, I can split it into four steps: 
 
-    1. Data collection was fun - I think data engineering could be an area I could explore more.
+1. Data collection was fun - I think data engineering could be an area I could explore more.
 
-    2. Data processing for machine learning took a lot of time, but it taught me a lot about working with Pandas, NumPy, and SciPy. Data processing is an area of improvement for me.
+2. Data processing for machine learning took a lot of time, but it taught me a lot about working with Pandas, NumPy, and SciPy. Data processing is an area of improvement for me.
 
-    3. PCA Analysis was really fun! Even if the program was based on previous libraries, I learnt a lot about statistical methods and optimization, as well as vector calculations through my research and prep in understanding this method.
+3. PCA Analysis was really fun! Even if the program was based on previous libraries, I learnt a lot about statistical methods and optimization, as well as vector calculations through my research and prep in understanding this method.
 
-    4. Designing the Dash app was very time-consuming, and I discovered that I don't enjoy front-end design (although it is a very useful skill). I want to work with more frameworks in future to find simpler, more efficient front-end designs for my projects.
+4. Designing the Dash app was very time-consuming, and I discovered that I don't enjoy front-end design (although it is a very useful skill). I want to work with more frameworks in future to find simpler, more efficient front-end designs for my projects.
 
 I learnt a lot about other crucial elements for data science. I enacted best practices in version control, documentation, and data management throughout the project. I also ensured I was coding regularly, and purposely struggling through difficult aspects to gain a better experience - this was probably why I learnt so much!
 
